@@ -56,7 +56,7 @@ pipeline {
             <html>
               <body>
                 <p>
-                  Hi Team,<br/><br/>
+                  Hi,<br/><br/>
                   Your job <b>${JOB_NAME}</b> status is
                   <span style="color:green; font-weight:bold;">SUCCESS</span>
                 </p>
@@ -84,10 +84,6 @@ pipeline {
                 </p>
 
                 <br/>
-                <p style="color:green;">
-                  Thanks for the updates,<br/>
-                  <b>Enclaim DevOps Team</b>
-                </p>
               </body>
             </html>
             """
@@ -103,7 +99,7 @@ pipeline {
             <html>
               <body>
                 <p>
-                  Hi Team,<br/><br/>
+                  Hi,<br/><br/>
                   Your job <b>${JOB_NAME}</b> status is
                   <span style="color:red; font-weight:bold;">FAILED</span>
                 </p>
@@ -130,10 +126,6 @@ pipeline {
                 </p>
 
                 <br/>
-                <p style="color:green;">
-                  Thanks for the updates,<br/>
-                  <b>Enclaim DevOps Team</b>
-                </p>
               </body>
             </html>
             """
