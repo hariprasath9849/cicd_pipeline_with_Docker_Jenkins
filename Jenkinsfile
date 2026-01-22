@@ -74,6 +74,7 @@ pipeline {
                       </span>
                     </p>
                 <p>
+                
                   <b>Job:</b> ${JOB_NAME}<br/>
                   <b>Build Number:</b> ${BUILD_NUMBER}<br/>
                   <b>Build URL:</b>
