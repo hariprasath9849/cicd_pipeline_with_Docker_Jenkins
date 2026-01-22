@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image 'docker:26.1.5-cli'
+            args '-v /var/run/docker.sock:/var/run/docker.sock'
+        }
+    }
 
     environment {
         IMAGE_NAME = "hariprasath9849/hello-world-python"
@@ -74,7 +79,7 @@ pipeline {
                       </span>
                     </p>
                 <p>
-                
+
                   <b>Job:</b> ${JOB_NAME}<br/>
                   <b>Build Number:</b> ${BUILD_NUMBER}<br/>
                   <b>Build URL:</b>
