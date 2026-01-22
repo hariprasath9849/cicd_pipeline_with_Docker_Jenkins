@@ -60,7 +60,6 @@ pipeline {
                   Your job <b>${JOB_NAME}</b> status is
                   <span style="color:green; font-weight:bold;">SUCCESS</span>
                 </p>
-
                 <p>
                       <b>Build Status:</b>
                       <span style="
@@ -74,15 +73,12 @@ pipeline {
                         SUCCESS
                       </span>
                     </p>
-
-
                 <p>
                   <b>Job:</b> ${JOB_NAME}<br/>
                   <b>Build Number:</b> ${BUILD_NUMBER}<br/>
                   <b>Build URL:</b>
                   <a href="${BUILD_URL}">${BUILD_URL}</a>
                 </p>
-
                 <br/>
               </body>
             </html>
