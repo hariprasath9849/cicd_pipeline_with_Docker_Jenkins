@@ -45,16 +45,17 @@ pipeline {
             }
         }
 
-         post {
+    post {
         success {
             emailext(
                 to: 'hariprasathawsdevops@gmail.com',
-                subject: "SUCCESS: $PROJECT_NAME #$BUILD_NUMBER",
+                subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """
-                <h3>Build SUCCESS</h3>
-                <p>Project: $PROJECT_NAME</p>
-                <p>Build: #$BUILD_NUMBER</p>
-                <p>URL: <a href="$BUILD_URL">$BUILD_URL</a></p>
+                    <h3>Build SUCCESS</h3>
+                    <p>Job: ${env.JOB_NAME}</p>
+                    <p>Build Number: ${env.BUILD_NUMBER}</p>
+                    <p>Status: SUCCESS</p>
+                    <p>URL: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
                 """
             )
         }
@@ -62,12 +63,13 @@ pipeline {
         failure {
             emailext(
                 to: 'hariprasathawsdevops@gmail.com',
-                subject: "FAILED: $PROJECT_NAME #$BUILD_NUMBER",
+                subject: "FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
                 body: """
-                <h3>Build FAILED</h3>
-                <p>Project: $PROJECT_NAME</p>
-                <p>Build: #$BUILD_NUMBER</p>
-                <p>Check logs: <a href="$BUILD_URL">$BUILD_URL</a></p>
+                    <h3>Build FAILED</h3>
+                    <p>Job: ${env.JOB_NAME}</p>
+                    <p>Build Number: ${env.BUILD_NUMBER}</p>
+                    <p>Status: FAILED</p>
+                    <p>Check logs: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
                 """
             )
         }
