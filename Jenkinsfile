@@ -29,8 +29,8 @@ pipeline {
                     passwordVariable: 'DOCKER_PASS'
                 )]) {
                     sh '''
-                      echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
-                      docker push $IMAGE_NAME:latest
+                        echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin
+                        docker push $IMAGE_NAME:latest
                     '''
                 }
             }
@@ -39,11 +39,12 @@ pipeline {
         stage('Run Docker Container') {
             steps {
                 sh '''
-                  docker rm -f $CONTAINER_NAME || true
-                  docker run -d -p 8000:8000 --name $CONTAINER_NAME $IMAGE_NAME:latest
+                    docker rm -f $CONTAINER_NAME || true
+                    docker run -d -p 8000:8000 --name $CONTAINER_NAME $IMAGE_NAME:latest
                 '''
             }
         }
+    }
 
     post {
         success {
@@ -74,6 +75,4 @@ pipeline {
             )
         }
     }
-    }
 }
-
