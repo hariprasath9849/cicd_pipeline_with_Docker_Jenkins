@@ -44,5 +44,32 @@ pipeline {
                 '''
             }
         }
+
+         post {
+        success {
+            emailext(
+                to: 'hariprasathawsdevops@gmail.com',
+                subject: "SUCCESS: $PROJECT_NAME #$BUILD_NUMBER",
+                body: """
+                <h3>Build SUCCESS</h3>
+                <p>Project: $PROJECT_NAME</p>
+                <p>Build: #$BUILD_NUMBER</p>
+                <p>URL: <a href="$BUILD_URL">$BUILD_URL</a></p>
+                """
+            )
+        }
+
+        failure {
+            emailext(
+                to: 'hariprasathawsdevops@gmail.com',
+                subject: "FAILED: $PROJECT_NAME #$BUILD_NUMBER",
+                body: """
+                <h3>Build FAILED</h3>
+                <p>Project: $PROJECT_NAME</p>
+                <p>Build: #$BUILD_NUMBER</p>
+                <p>Check logs: <a href="$BUILD_URL">$BUILD_URL</a></p>
+                """
+            )
+        }
     }
 }
