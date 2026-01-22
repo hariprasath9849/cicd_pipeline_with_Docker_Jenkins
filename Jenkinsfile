@@ -47,31 +47,96 @@ pipeline {
     }
 
     post {
-        success {
-            emailext(
-                to: 'hariprasathawsdevops@gmail.com',
-                subject: "SUCCESS: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """
-                    <h3>Build SUCCESS</h3>
-                    <p>Job: ${env.JOB_NAME}</p>
-                    <p>Build Number: ${env.BUILD_NUMBER}</p>
-                    <p>Status: SUCCESS</p>
-                    <p>URL: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
-                """
-            )
-        }
+    success {
+        mail(
+            to: 'hariprasathawsdevops@gmail.com',
+            subject: "SUCCESS ✅: ${JOB_NAME} #${BUILD_NUMBER}",
+            mimeType: 'text/html',
+            body: """
+            <html>
+              <body>
+                <p>
+                  Hi Team,<br/><br/>
+                  Your job <b>${JOB_NAME}</b> status is
+                  <span style="color:green; font-weight:bold;">SUCCESS</span>
+                </p>
 
-        failure {
-            emailext(
-                to: 'hariprasathawsdevops@gmail.com',
-                subject: "FAILED: ${env.JOB_NAME} #${env.BUILD_NUMBER}",
-                body: """
-                    <h3>Build FAILED</h3>
-                    <p>Job: ${env.JOB_NAME}</p>
-                    <p>Build Number: ${env.BUILD_NUMBER}</p>
-                    <p>Status: FAILED</p>
-                    <p>Check logs: <a href="${env.BUILD_URL}">${env.BUILD_URL}</a></p>
-                """
+                <p>
+                      <b>Build Status:</b>
+                      <span style="
+                            background-color: green;
+                            color: white;
+                            font-weight: bold;
+                            padding: 4px 10px;
+                            border-radius: 4px;
+                            display: inline-block;
+                      ">
+                        SUCCESS
+                      </span>
+                    </p>
+
+
+                <p>
+                  <b>Job:</b> ${JOB_NAME}<br/>
+                  <b>Build Number:</b> ${BUILD_NUMBER}<br/>
+                  <b>Build URL:</b>
+                  <a href="${BUILD_URL}">${BUILD_URL}</a>
+                </p>
+
+                <br/>
+                <p style="color:green;">
+                  Thanks for the updates,<br/>
+                  <b>Enclaim DevOps Team</b>
+                </p>
+              </body>
+            </html>
+            """
+        )
+    }
+
+    failure {
+        mail(
+            to: 'hariprasathawsdevops@gmail.com',
+            subject: "FAILED ❌: ${JOB_NAME} #${BUILD_NUMBER}",
+            mimeType: 'text/html',
+            body: """
+            <html>
+              <body>
+                <p>
+                  Hi Team,<br/><br/>
+                  Your job <b>${JOB_NAME}</b> status is
+                  <span style="color:red; font-weight:bold;">FAILED</span>
+                </p>
+
+               <p>
+                  <b>Build Status:</b>
+                  <span style="
+                        background-color: red;
+                        color: white;
+                        font-weight: bold;
+                        padding: 4px 10px;
+                        border-radius: 4px;
+                        display: inline-block;
+                  ">
+                    FAILED
+                  </span>
+                </p>
+
+                <p>
+                  <b>Job:</b> ${JOB_NAME}<br/>
+                  <b>Build Number:</b> ${BUILD_NUMBER}<br/>
+                  <b>Build URL:</b>
+                  <a href="${BUILD_URL}">${BUILD_URL}</a>
+                </p>
+
+                <br/>
+                <p style="color:green;">
+                  Thanks for the updates,<br/>
+                  <b>Enclaim DevOps Team</b>
+                </p>
+              </body>
+            </html>
+            """
             )
         }
     }
